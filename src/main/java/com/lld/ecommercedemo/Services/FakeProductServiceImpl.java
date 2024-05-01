@@ -1,6 +1,7 @@
 package com.lld.ecommercedemo.Services;
 
 import com.lld.ecommercedemo.Exceptions.ProductNotFoundException;
+import com.lld.ecommercedemo.Models.Category;
 import com.lld.ecommercedemo.Models.Product;
 import com.lld.ecommercedemo.Utils.ProductUtils;
 import com.lld.ecommercedemo.dtos.FakeProductServiceDto;
@@ -11,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("fakeStoreProductService")
 public class FakeProductServiceImpl implements ProductService{
 
 //    private RestTemplate restTemplate;
@@ -21,7 +22,7 @@ public class FakeProductServiceImpl implements ProductService{
         this.webClient = webClient;
     }
     @Override
-    public Product getProductById(int id) throws ProductNotFoundException {
+    public Product getProductById(long id) throws ProductNotFoundException {
 //        FakeProductServiceDto productServiceDto = this.restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeProductServiceDto.class);
         FakeProductServiceDto productServiceDto = webClient.get()
                                                             .uri("https://fakestoreapi.com/products/" + id)
@@ -43,5 +44,24 @@ public class FakeProductServiceImpl implements ProductService{
         }
 
         return products;
+    }
+
+    @Override
+    public Product createProduct(String title, double price, String description, String image, String categoryName) {
+        return null;
+    }
+
+    @Override
+    public Product updatePrice(long id, double updatedPrice) {
+        return null;
+    }
+
+    @Override
+    public Product updateImage(long id, String updatedImage) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduct(long id) {
     }
 }
