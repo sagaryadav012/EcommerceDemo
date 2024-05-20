@@ -47,7 +47,7 @@ public class FakeProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product createProduct(String title, double price, String description, String image, String categoryName) {
+    public Product createProduct(String title, double price, String description, String image, String categoryName, int quantity) {
         return null;
     }
 
@@ -63,5 +63,15 @@ public class FakeProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProduct(long id) {
+    }
+
+    @Override
+    public Product updateQuantity(long id, int quantity) throws ProductNotFoundException {
+        return null;
+    }
+
+    @Override
+    public List<Product> getProductsByIds(List<Long> productIds) {
+        return null;
     }
 }

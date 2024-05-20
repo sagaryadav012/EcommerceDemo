@@ -28,12 +28,11 @@ public class SelfProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> getProducts() {
-        List<Product> products = productRepository.findAll();
-        return products;
+        return productRepository.findAll();
     }
 
     @Override
-    public Product createProduct(String title, double price, String description, String image, String categoryName) {
+    public Product createProduct(String title, double price, String description, String image, String categoryName, int quantity) {
         Product product = new Product();
         product.setTitle(title);
         product.setPrice(price);
@@ -41,8 +40,14 @@ public class SelfProductServiceImpl implements ProductService{
         product.setImage(image);
         Category category = categoryService.createCategory(categoryName);
         product.setCategory(category);
+        product.setAvailableQuantity(quantity);
 
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getProductsByIds(List<Long> productIds) {
+        return this.productRepository.findAllById(productIds);
     }
 
     @Override
@@ -63,5 +68,12 @@ public class SelfProductServiceImpl implements ProductService{
     public void deleteProduct(long id) throws ProductNotFoundException {
         Product product = getProductById(id);
         productRepository.deleteById(product.getId());
+    }
+
+    @Override
+    public Product updateQuantity(long id, int quantity) throws ProductNotFoundException {
+        Product product = getProductById(id);
+        product.setAvailableQuantity(quantity);
+        return productRepository.save(product);
     }
 }

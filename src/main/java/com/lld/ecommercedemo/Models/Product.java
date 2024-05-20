@@ -15,5 +15,6 @@ public class Product {
     private String image;
     @ManyToOne
     private Category category;
+    private int availableQuantity;
 
 }

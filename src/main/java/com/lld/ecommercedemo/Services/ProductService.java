@@ -9,8 +9,10 @@ import java.util.List;
 public interface ProductService {
     Product getProductById(long id) throws ProductNotFoundException;
     List<Product> getProducts();
-    Product createProduct(String title, double price, String description, String image, String categoryName);
+    Product createProduct(String title, double price, String description, String image, String categoryName, int quantity);
     Product updatePrice(long id, double updatedPrice) throws ProductNotFoundException;
     Product updateImage(long id, String updatedImage) throws ProductNotFoundException;
     void deleteProduct(long id) throws ProductNotFoundException;
+    Product updateQuantity(long id, int quantity) throws ProductNotFoundException;
+    List<Product> getProductsByIds(List<Long> productIds);
 }
